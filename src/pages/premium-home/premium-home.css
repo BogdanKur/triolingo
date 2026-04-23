@@ -1,0 +1,412 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.premium-home-screen {
+  --header-h: clamp(72px, 11dvh, 107px);
+  --main-pad-x: clamp(18px, 5vw, 60px);
+  --main-inner-pad-x: clamp(14px, 1.8vw, 22px);
+  --right-align-x: calc(var(--main-pad-x) + var(--main-inner-pad-x));
+  --right-col-w: clamp(318px, 37vw, 452px);
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #ebeced;
+}
+
+.premium-home-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.premium-header {
+  position: relative;
+  z-index: 3;
+  height: var(--header-h);
+  background: #ffffff;
+}
+
+.premium-header-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--right-align-x) 0 clamp(14px, 5vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.premium-brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 23px);
+  min-width: 0;
+}
+
+.premium-brand-mascot {
+  width: clamp(38px, 5.8vw, 72px);
+  height: clamp(38px, 5.8vw, 72px);
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.premium-brand-text {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.premium-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.premium-burger {
+  width: clamp(36px, 4.6vw, 55px);
+  height: clamp(26px, 3.4vw, 40px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.premium-burger img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.premium-main {
+  position: relative;
+  z-index: 2;
+  height: calc(100dvh - var(--header-h));
+  padding: clamp(14px, 2.6vh, 20px) var(--main-pad-x) clamp(20px, 3.2vh, 34px);
+}
+
+.premium-main-scroll {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(14px, 2vh, 22px) var(--main-inner-pad-x) clamp(16px, 2.4vh, 26px);
+  box-sizing: border-box;
+  overflow: visible;
+  scrollbar-width: none;
+}
+
+.premium-main-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.premium-top-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, var(--right-col-w));
+  align-items: center;
+  gap: clamp(14px, 2.6vw, 26px);
+}
+
+.premium-course-card {
+  min-height: clamp(110px, 17vh, 132px);
+  border-radius: clamp(20px, 2.5vw, 30px);
+  border: 2px solid #0d5ed5;
+  background: #ffffff;
+  padding: clamp(12px, 1.8vh, 18px) clamp(12px, 2vw, 20px);
+  display: grid;
+  grid-template-columns: clamp(52px, 7vw, 66px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 18px);
+}
+
+.premium-course-icon {
+  width: clamp(52px, 7vw, 66px);
+  height: clamp(60px, 9vw, 79px);
+  object-fit: contain;
+}
+
+.premium-course-content {
+  min-width: 0;
+}
+
+.premium-course-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.premium-course-description {
+  margin: clamp(4px, 0.8vh, 8px) 0 0;
+  color: #000000;
+  font-size: clamp(18px, 2vw, 30px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.premium-course-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  color: #000000;
+  font-size: clamp(18px, 2vw, 32px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.premium-stats {
+  --stats-gap: clamp(4px, 0.4vw, 5px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--stats-gap);
+  flex: 0 0 auto;
+}
+
+.premium-stat-pill {
+  width: calc((100% - (2 * var(--stats-gap))) / 3);
+  height: clamp(40px, 4.6vw, 55px);
+  border-radius: 999px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 0.7vw, 8px);
+  padding: 0 clamp(8px, 0.8vw, 10px);
+}
+
+.premium-stat-pill-icon {
+  width: clamp(24px, 3.8vw, 46px);
+  height: clamp(24px, 3.8vw, 46px);
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.premium-stat-pill-value {
+  color: #000000;
+  font-size: clamp(20px, 2.7vw, 32px);
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.premium-content-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: clamp(12px, 1.8vh, 18px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.21fr) minmax(0, 1fr);
+  gap: clamp(14px, 2.4vw, 30px);
+  align-items: start;
+}
+
+.premium-exercises-card,
+.premium-daily-card {
+  border-radius: clamp(18px, 2.5vw, 30px);
+  box-shadow: 2px 4px 10.2px 9px rgba(0, 0, 0, 0.25);
+  background: #f0f1fa;
+}
+
+.premium-exercises-card {
+  padding: clamp(18px, 2.5vw, 28px) clamp(14px, 2vw, 20px);
+  height: min(100%, clamp(320px, 56vh, 430px));
+  min-height: 0;
+}
+
+.premium-exercises-scroll {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vh, 14px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.premium-exercises-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.premium-exercise-item {
+  width: 100%;
+  min-height: clamp(52px, 8vh, 70px);
+  border: 2px solid #0d5ed5;
+  border-radius: 20px;
+  background: #ececec;
+  color: #000000;
+  font-size: clamp(22px, 2.3vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.premium-daily-card {
+  width: min(100%, var(--right-col-w));
+  justify-self: end;
+  padding: clamp(14px, 2vw, 20px) clamp(14px, 2vw, 23px) clamp(14px, 2vw, 25px);
+}
+
+.premium-daily-card-title {
+  margin: 0;
+  text-align: center;
+  color: #000000;
+  font-size: clamp(22px, 2.7vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.premium-daily-list {
+  margin-top: clamp(14px, 2.2vw, 25px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 25px);
+}
+
+.premium-daily-item {
+  width: 100%;
+  min-height: clamp(52px, 5.9vw, 70px);
+  border: 0;
+  border-radius: clamp(12px, 1.7vw, 20px);
+  background: #cfcfff;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(8px, 0.8vw, 10px);
+  padding: 0 clamp(10px, 1vw, 12px);
+}
+
+.premium-daily-item-title {
+  color: #000000;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.premium-daily-item-reward {
+  color: #b9b4b4;
+  font-size: clamp(12px, 1.3vw, 16px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.premium-daily-item-arrow {
+  width: clamp(30px, 3.8vw, 46px);
+  height: clamp(30px, 3.8vw, 46px);
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .premium-header-inner {
+    padding: 0 clamp(12px, 3.8vw, 20px);
+  }
+
+  .premium-title {
+    font-size: clamp(22px, 6.8vw, 34px);
+  }
+
+  .premium-brand-text {
+    font-size: clamp(22px, 6.6vw, 34px);
+  }
+
+  .premium-main {
+    padding: clamp(10px, 1.6vh, 14px) clamp(12px, 3.8vw, 20px) clamp(12px, 1.8vh, 18px);
+  }
+
+  .premium-main-scroll {
+    display: block;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .premium-top-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .premium-stats {
+    width: min(100%, var(--right-col-w));
+    margin-left: auto;
+  }
+
+  .premium-content-grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .premium-exercises-card,
+  .premium-daily-card {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  .premium-exercises-card {
+    min-height: clamp(320px, 50vh, 430px);
+  }
+
+  .premium-daily-card {
+    justify-self: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .premium-course-card {
+    grid-template-columns: clamp(52px, 16vw, 66px) 1fr;
+    grid-template-areas:
+      "icon title"
+      "icon desc"
+      "price price";
+    align-items: start;
+  }
+
+  .premium-course-icon {
+    grid-area: icon;
+  }
+
+  .premium-course-content {
+    grid-area: title / title / desc / desc;
+  }
+
+  .premium-course-prices {
+    grid-area: price;
+    margin-top: 6px;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+}
