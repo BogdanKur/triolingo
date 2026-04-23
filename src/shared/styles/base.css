@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+@import "./reset.css";
+@import "./tokens.css";
+
+body {
+  background: var(--color-page);
+  color: var(--color-primary);
+  font-family: var(--font-main);
+}
+
+#app {
+  min-height: 100dvh;
+}
+
+html.theme-dark,
+body.theme-dark {
+  background: #0b1220;
+  color: #e5edf8;
+}
+
+body.theme-dark .home-screen,
+body.theme-dark .profile-screen,
+body.theme-dark .settings-screen,
+body.theme-dark .customization-screen,
+body.theme-dark .courses-screen,
+body.theme-dark .premium-screen,
+body.theme-dark .audio-screen,
+body.theme-dark .translation-screen,
+body.theme-dark .exercise-word-screen,
+body.theme-dark .exercise-gap-screen,
+body.theme-dark .exercise-build-screen,
+body.theme-dark .exercise-match-screen,
+body.theme-dark .exercise-speak-screen {
+  background: #0b1220 !important;
+}
+
+body.theme-dark .home-screen::before,
+body.theme-dark .profile-screen::before,
+body.theme-dark .settings-screen::before,
+body.theme-dark .customization-screen::before,
+body.theme-dark .audio-screen::before,
+body.theme-dark .translation-screen::before,
+body.theme-dark .exercise-word-screen::before,
+body.theme-dark .exercise-gap-screen::before,
+body.theme-dark .exercise-build-screen::before,
+body.theme-dark .exercise-match-screen::before,
+body.theme-dark .exercise-speak-screen::before {
+  opacity: 0.2 !important;
+}
+
+body.theme-dark .home-header,
+body.theme-dark .profile-header,
+body.theme-dark .settings-header,
+body.theme-dark .custom-header,
+body.theme-dark .drawer,
+body.theme-dark .drawer-head {
+  background: #111a2e !important;
+}
+
+body.theme-dark .lesson-card,
+body.theme-dark .daily-card,
+body.theme-dark .profile-stat-card,
+body.theme-dark .profile-achievement--highlighted,
+body.theme-dark .settings-item,
+body.theme-dark .audio-card,
+body.theme-dark .translation-card,
+body.theme-dark .exercise-gap-prompt-card,
+body.theme-dark .exercise-build-prompt-card,
+body.theme-dark .exercise-speak-phrase-card,
+body.theme-dark .exercise-match-board,
+body.theme-dark .exercise-word-content,
+body.theme-dark .exercise-word-illustration-wrap,
+body.theme-dark .purchase-popup-inner,
+body.theme-dark .custom-section {
+  background: #1a2740 !important;
+  border-color: #334155 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.theme-dark .daily-item,
+body.theme-dark .exercise-word-option,
+body.theme-dark .exercise-gap-option,
+body.theme-dark .exercise-build-option,
+body.theme-dark .exercise-match-word,
+body.theme-dark .settings-action,
+body.theme-dark .purchase-btn {
+  background: #223553 !important;
+  color: #e5edf8 !important;
+  border: 1px solid #3b4e71 !important;
+}
+
+body.theme-dark .stat-pill,
+body.theme-dark .home-stats,
+body.theme-dark .profile-progress-track {
+  background: #18243b !important;
+}
+
+body.theme-dark .map-step {
+  color: #60a5fa !important;
+}
+
+body.theme-dark .map-step.map-step--completed,
+body.theme-dark .map-step.is-primary {
+  color: #22c55e !important;
+}
+
+body.theme-dark .map-step.map-step--locked {
+  color: #64748b !important;
+}
+
+body.theme-dark [class*="-title"],
+body.theme-dark [class*="-text"],
+body.theme-dark [class*="-value"],
+body.theme-dark [class*="-greeting"],
+body.theme-dark [class*="-name"],
+body.theme-dark [class*="-label"],
+body.theme-dark [class*="-prompt"],
+body.theme-dark [class*="-status"],
+body.theme-dark [class*="-suffix"],
+body.theme-dark .drawer-link {
+  color: #e5edf8 !important;
+}
+
+body.theme-dark .daily-item-reward,
+body.theme-dark .profile-stat-suffix {
+  color: #a4b3cb !important;
+}
+
+body.theme-dark .drawer-link:hover {
+  color: #93c5fd !important;
+}
+
+body.theme-dark .profile-divider,
+body.theme-dark .settings-item-line,
+body.theme-dark .drawer-line {
+  filter: brightness(0.7);
+}
+
+body.theme-dark .drawer-overlay,
+body.theme-dark .purchase-overlay {
+  background: rgba(0, 0, 0, 0.45) !important;
+}
+
+body.theme-dark .profile-pet-popup-inner {
+  background: #1a2740 !important;
+  border-color: #6b46c1 !important;
+}
+
+body.theme-dark .profile-pet-popup-title,
+body.theme-dark .profile-pet-popup-subtitle,
+body.theme-dark .profile-pet-card-meta {
+  color: #e5edf8 !important;
+}
+
+body.theme-dark .profile-pet-card {
+  background: #223553 !important;
+  border-color: #3b4e71 !important;
+}
+
+body.theme-dark .profile-pet-card--active {
+  background: #214834 !important;
+  border-color: #22c55e !important;
+}
+
+body.theme-dark .profile-pet-card--locked {
+  background: #29364f !important;
+}
