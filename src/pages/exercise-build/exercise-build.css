@@ -1,0 +1,208 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.exercise-build-screen {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #ebeced;
+}
+
+.exercise-build-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.exercise-build-close {
+  position: absolute;
+  z-index: 3;
+  top: clamp(18px, 4.6vw, 31px);
+  right: clamp(18px, 4.8vw, 31px);
+  width: clamp(30px, 3.6vw, 42px);
+  height: clamp(30px, 3.6vw, 42px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.exercise-build-close img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.exercise-build-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: clamp(24px, 4.8vh, 37px) clamp(16px, 4.5vw, 60px) clamp(24px, 4vh, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 3.2vh, 28px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.exercise-build-main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.exercise-build-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(30px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.exercise-build-prompt-card {
+  width: min(100%, var(--card-max-width));
+  border-radius: clamp(22px, 2.5vw, 30px);
+  background: #f0f1fa;
+  box-shadow: 2px 4px 10.2px 9px rgba(0, 0, 0, 0.25);
+  min-height: clamp(70px, 14vh, 79px);
+  padding: clamp(14px, 1.8vh, 18px) clamp(18px, 2.2vw, 26px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-build-prompt {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(20px, 2.8vw, 36px);
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: center;
+}
+
+.exercise-build-options {
+  width: min(100%, 1120px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vh, 22px) clamp(14px, 2vw, 26px);
+}
+
+.exercise-build-option {
+  position: relative;
+  min-width: clamp(180px, 20vw, 245px);
+  min-height: clamp(56px, 9.8vh, 70px);
+  border: 2px solid #0d5ed5;
+  border-radius: 20px;
+  background: #ececec;
+  color: #000000;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0 clamp(18px, 2.2vw, 24px);
+}
+
+.exercise-build-option.is-selected {
+  background: #0d5ed5;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.2vw, 14px);
+}
+
+.exercise-build-option.is-wrong {
+  background: #d64b4b;
+  border-color: #d64b4b;
+  color: #ffffff;
+}
+
+.exercise-build-option-remove {
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.exercise-build-option-counter {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.exercise-build-check {
+  margin-top: auto;
+  width: min(100%, var(--button-max-width));
+  min-height: clamp(72px, 12vh, 87px);
+  border: 2px solid #0d5ed5;
+  border-radius: 35px;
+  background: transparent;
+  color: #0d5ed5;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.exercise-build-check.exercise-build-check--ready:hover {
+  background: #0d5ed5;
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .exercise-build-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .exercise-build-main {
+    padding: 20px 12px 18px;
+    gap: 14px;
+  }
+
+  .exercise-build-title {
+    margin-top: 6px;
+    font-size: clamp(26px, 9vw, 38px);
+  }
+
+  .exercise-build-prompt {
+    font-size: clamp(18px, 5.2vw, 26px);
+  }
+
+  .exercise-build-option {
+    width: 100%;
+    min-width: 0;
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .exercise-build-check {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
