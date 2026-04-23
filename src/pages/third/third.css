@@ -1,0 +1,212 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.third-screen {
+  --cw: 1200;
+  --ch: 700;
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+.third-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.third-monster {
+  position: absolute;
+  left: calc((var(--x) / var(--cw)) * 100%);
+  top: calc((var(--y) / var(--ch)) * 100%);
+  width: calc((var(--w) / var(--cw)) * 100%);
+  height: calc((var(--h) / var(--ch)) * 100%);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.third-monster img {
+  position: absolute;
+  left: calc(var(--sprite-left) * 1%);
+  top: calc(var(--sprite-top) * 1%);
+  width: calc(var(--sprite-w) * 1%);
+  height: calc(var(--sprite-h) * 1%);
+  max-width: none;
+}
+
+.third-title {
+  position: absolute;
+  left: calc(202 / var(--cw) * 100%);
+  top: calc(88 / var(--ch) * 100%);
+  width: calc(795 / var(--cw) * 100%);
+  text-align: center;
+  color: #5b6cff;
+  font-size: clamp(24px, 3.25vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.third-board {
+  position: absolute;
+  left: calc((var(--x) / var(--cw)) * 100%);
+  top: calc((var(--y) / var(--ch)) * 100%);
+  width: calc((var(--w) / var(--cw)) * 100%);
+  height: calc((var(--h) / var(--ch)) * 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 5;
+  scrollbar-width: none;
+}
+
+.third-board::-webkit-scrollbar {
+  display: none;
+}
+
+.third-board-content {
+  display: grid;
+  grid-template-columns: repeat(3, 232px);
+  column-gap: 28px;
+  row-gap: 26px;
+  justify-content: center;
+  align-content: start;
+  min-height: calc(1329 / 343 * 100%);
+  padding-top: 72px;
+  padding-bottom: 20px;
+}
+
+.lang-card {
+  position: relative;
+  width: 232px;
+  aspect-ratio: 232 / 211;
+  border: 2px solid transparent;
+  border-radius: 27px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #0d5ed5 0%, #8441cd 56%, #e4538c 100%) border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 13px 20px 12px;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.third-board-content .lang-card:nth-child(3n + 2) {
+  transform: translateY(-54px);
+}
+
+.lang-card.is-selected {
+  box-shadow: 4px 7px 14px 6px rgba(13, 94, 213, 1);
+}
+
+.lang-card:hover {
+  box-shadow: 4px 7px 14px 6px rgba(13, 94, 213, 1);
+}
+
+.lang-flag {
+  width: 88%;
+  aspect-ratio: 193 / 137;
+  margin: 8px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.lang-flag-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.lang-label {
+  font-size: clamp(16px, 2vw, 24px);
+  color: #0d5ed5;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.third-start {
+  position: absolute;
+  left: calc((var(--x) / var(--cw)) * 100%);
+  top: calc((var(--y) / var(--ch)) * 100%);
+  width: calc((var(--w) / var(--cw)) * 100%);
+  height: calc((var(--h) / var(--ch)) * 100%);
+  border: 2px solid #0d5ed5;
+  border-radius: 35px;
+  background: #fff;
+  color: #0d5ed5;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  z-index: 7;
+  cursor: pointer;
+}
+
+.third-start:disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+
+.third-start:not(:disabled):hover {
+  background: #0d5ed5;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .third-title {
+    left: 8%;
+    top: 7%;
+    width: 84%;
+    font-size: clamp(30px, 10vw, 46px);
+    white-space: normal;
+  }
+
+  .third-board {
+    left: 8%;
+    top: 24%;
+    width: 84%;
+    height: 44%;
+  }
+
+  .third-board-content {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 14px;
+    row-gap: 16px;
+    padding: 0 6px 12px;
+    min-height: auto;
+  }
+
+  .lang-card {
+    width: 100%;
+    max-width: 190px;
+    justify-self: center;
+  }
+
+  .third-board-content .lang-card:nth-child(3n + 2) {
+    transform: none;
+  }
+
+  .lang-flag {
+    width: 90%;
+    margin: 8px auto 0;
+  }
+
+  .third-start {
+    left: 12%;
+    top: 78%;
+    width: 76%;
+    height: 9%;
+  }
+}
