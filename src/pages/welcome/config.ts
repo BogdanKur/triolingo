@@ -1,0 +1,85 @@
+﻿import type { WelcomeScreenConfig } from "../../shared/types/welcome";
+
+export const welcomeConfig: WelcomeScreenConfig = {
+  background: {
+    src: "/assets/images/welcome/background-clouds.png",
+    alt: "Небо с облаками",
+  },
+  title: {
+    text: "Добро пожаловать в Triolingo — там, где языки становятся ближе!",
+    desktop: { x: 301, y: 278, w: 598, h: 144 },
+    mobile: { x: 33, y: 295, w: 324, h: 174 },
+  },
+  cta: {
+    text: "Start",
+    href: "/second.html",
+    desktop: { x: 349, y: 540, w: 503, h: 87 },
+    mobile: { x: 30, y: 663, w: 330, h: 80 },
+  },
+  decorations: [
+    {
+      id: "image-7",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Фиолетовый персонаж",
+      desktop: { x: 50, y: 47, w: 129, h: 147 },
+      mobile: { x: 16, y: 56, w: 93, h: 107 },
+      sprite: { leftPct: 0, topPct: -4.33, widthPct: 297.67, heightPct: 390.84 },
+    },
+    {
+      id: "image-8",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Фиолетовый персонаж улыбается",
+      desktop: { x: 1002, y: 504, w: 156, h: 159 },
+      mobile: { x: 284, y: 716, w: 96, h: 96 },
+      sprite: { leftPct: -101.76, topPct: -12.93, widthPct: 300.29, heightPct: 441.38 },
+    },
+    {
+      id: "image-9",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Розовый персонаж",
+      desktop: { x: 61, y: 489, w: 137, h: 158 },
+      mobile: { x: 12, y: 660, w: 92, h: 108 },
+      sprite: { leftPct: -214.11, topPct: -4.51, widthPct: 314.11, heightPct: 407.43 },
+    },
+    {
+      id: "image-10",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Голубой персонаж",
+      desktop: { x: 114, y: 278, w: 149, h: 157 },
+      mobile: { x: 14, y: 378, w: 102, h: 109 },
+      sprite: { leftPct: 0, topPct: -113.89, widthPct: 299.42, heightPct: 426.67 },
+    },
+    {
+      id: "image-4",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Розовый персонаж счастлив",
+      desktop: { x: 629, y: 37, w: 157, h: 157 },
+      mobile: { x: 136, y: 126, w: 102, h: 102 },
+      sprite: { leftPct: -195.95, topPct: -116.76, widthPct: 295.95, heightPct: 443.93 },
+    },
+    {
+      id: "image-11",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Розовый персонаж с сердцем",
+      desktop: { x: 332, y: 120, w: 120, h: 126 },
+      mobile: { x: 114, y: 198, w: 86, h: 92 },
+      sprite: { leftPct: -7.69, topPct: -226.98, widthPct: 315.08, heightPct: 450.44 },
+    },
+    {
+      id: "image-12",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Голубой персонаж",
+      desktop: { x: 976, y: 84, w: 136, h: 153 },
+      mobile: { x: 288, y: 92, w: 92, h: 105 },
+      sprite: { leftPct: -9.35, topPct: -312.47, widthPct: 319, heightPct: 425.48 },
+    },
+    {
+      id: "image-13",
+      src: "/assets/images/welcome/monsters-sprite.png",
+      alt: "Розовый персонаж в очках",
+      desktop: { x: 906, y: 335, w: 120, h: 134 },
+      mobile: { x: 284, y: 450, w: 90, h: 100 },
+      sprite: { leftPct: -115.67, topPct: -216.01, widthPct: 321, heightPct: 431.46 },
+    },
+  ],
+};

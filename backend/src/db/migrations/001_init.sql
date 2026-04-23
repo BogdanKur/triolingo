@@ -1,0 +1,149 @@
+CREATE TABLE IF NOT EXISTS users (
+  id BIGSERIAL PRIMARY KEY,
+  email TEXT UNIQUE,
+  name TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'student',
+  subscription_status TEXT NOT NULL DEFAULT 'free',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS oauth_accounts (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  provider TEXT NOT NULL,
+  provider_user_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(provider, provider_user_id)
+);
+
+CREATE TABLE IF NOT EXISTS profiles (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  avatar TEXT,
+  notification_level TEXT NOT NULL DEFAULT 'all',
+  preferred_language TEXT NOT NULL DEFAULT 'ru',
+  learning_language TEXT NOT NULL DEFAULT 'en'
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  music_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+  sound_enabled BOOLEAN NOT NULL DEFAULT TRUE,
+  telegram_notifications BOOLEAN NOT NULL DEFAULT TRUE,
+  night_mode BOOLEAN NOT NULL DEFAULT FALSE,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+  id BIGSERIAL PRIMARY KEY,
+  language TEXT NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  level TEXT NOT NULL,
+  is_premium BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS lessons (
+  id BIGSERIAL PRIMARY KEY,
+  course_id BIGINT NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  difficulty INT NOT NULL,
+  order_index INT NOT NULL,
+  topic TEXT NOT NULL,
+  is_daily BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS exercises (
+  id BIGSERIAL PRIMARY KEY,
+  lesson_id BIGINT NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+  type TEXT NOT NULL,
+  content JSONB NOT NULL,
+  correct_answer JSONB NOT NULL,
+  explanation TEXT NOT NULL,
+  xp_reward INT NOT NULL DEFAULT 10
+);
+
+CREATE TABLE IF NOT EXISTS exercise_attempts (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  exercise_id BIGINT REFERENCES exercises(id) ON DELETE SET NULL,
+  exercise_type TEXT NOT NULL,
+  user_answer JSONB NOT NULL,
+  is_correct BOOLEAN NOT NULL,
+  score INT NOT NULL,
+  feedback TEXT NOT NULL,
+  grammar_hint TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS lesson_results (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  lesson_id BIGINT NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+  is_completed BOOLEAN NOT NULL DEFAULT FALSE,
+  score INT NOT NULL DEFAULT 0,
+  mistakes JSONB NOT NULL DEFAULT '[]'::jsonb,
+  accuracy NUMERIC(5, 2) NOT NULL DEFAULT 0,
+  completed_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS user_progress (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  current_level TEXT NOT NULL DEFAULT 'A1',
+  total_xp INT NOT NULL DEFAULT 0,
+  crystals INT NOT NULL DEFAULT 125,
+  current_streak INT NOT NULL DEFAULT 0,
+  longest_streak INT NOT NULL DEFAULT 0,
+  accuracy NUMERIC(5, 2) NOT NULL DEFAULT 0,
+  weak_topics JSONB NOT NULL DEFAULT '[]'::jsonb,
+  last_activity_date DATE,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(user_id, language)
+);
+
+CREATE TABLE IF NOT EXISTS achievements (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  xp_required INT NOT NULL DEFAULT 0,
+  streak_required INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS user_achievements (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  achievement_id BIGINT NOT NULL REFERENCES achievements(id) ON DELETE CASCADE,
+  unlocked_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(user_id, achievement_id)
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  type TEXT NOT NULL,
+  message TEXT NOT NULL,
+  is_read BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS reports (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  report_type TEXT NOT NULL,
+  data JSONB NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS purchases (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  item_type TEXT NOT NULL,
+  item_id TEXT NOT NULL,
+  amount INT NOT NULL,
+  currency TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'success',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

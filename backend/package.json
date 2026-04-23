@@ -1,0 +1,37 @@
+{
+  "name": "triolingo-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "migrate": "tsx src/db/run-migrations.ts",
+    "seed": "tsx src/db/run-seed.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "jose": "^5.9.3",
+    "pg": "^8.13.1",
+    "redis": "^4.7.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^22.9.0",
+    "@types/pg": "^8.20.0",
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.1.1",
+    "tsx": "^4.19.2",
+    "typescript": "~6.0.2",
+    "vitest": "^2.1.8"
+  }
+}
