@@ -1,0 +1,135 @@
+.welcome-page,
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.welcome-scene {
+  --desktop-canvas-w: 1200;
+  --desktop-canvas-h: 700;
+  --mobile-canvas-w: 390;
+  --mobile-canvas-h: 844;
+  --scene-scale-x: 1;
+  --scene-scale-y: 1;
+  --scene-scale-uniform: 1;
+  --monster-scale-desktop: 0.9;
+  --monster-scale-mobile: 0.86;
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.welcome-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.welcome-decoration {
+  position: absolute;
+  left: calc(var(--desktop-x) * var(--scene-scale-x) * 1px);
+  top: calc(var(--desktop-y) * var(--scene-scale-y) * 1px);
+  width: calc(var(--desktop-w) * var(--scene-scale-uniform) * 1px);
+  height: calc(var(--desktop-h) * var(--scene-scale-uniform) * 1px);
+  overflow: hidden;
+  transform: scale(var(--monster-scale-desktop));
+  transform-origin: center center;
+  z-index: 2;
+}
+
+.welcome-decoration img {
+  position: absolute;
+  left: calc(var(--sprite-left) * 1%);
+  top: calc(var(--sprite-top) * 1%);
+  width: calc(var(--sprite-width) * 1%);
+  height: calc(var(--sprite-height) * 1%);
+  max-width: none;
+}
+
+.welcome-title {
+  position: absolute;
+  left: calc((var(--desktop-x) / var(--desktop-canvas-w)) * 100%);
+  top: calc((var(--desktop-y) / var(--desktop-canvas-h)) * 100%);
+  width: calc((var(--desktop-w) / var(--desktop-canvas-w)) * 100%);
+  min-height: calc((var(--desktop-h) / var(--desktop-canvas-h)) * 100%);
+  color: var(--color-primary);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  z-index: 4;
+}
+
+.welcome-cta {
+  position: absolute;
+  left: calc((var(--desktop-x) / var(--desktop-canvas-w)) * 100%);
+  top: calc((var(--desktop-y) / var(--desktop-canvas-h)) * 100%);
+  width: calc((var(--desktop-w) / var(--desktop-canvas-w)) * 100%);
+  min-height: calc((var(--desktop-h) / var(--desktop-canvas-h)) * 100%);
+  border: 2px solid var(--color-button);
+  border-radius: 35px;
+  background: var(--color-button-bg);
+  box-shadow: 0 4px 4px var(--color-button-shadow);
+  color: var(--color-button);
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-cta:hover {
+  transform: translateY(-2px);
+  background: var(--color-button);
+  color: #ffffff;
+  box-shadow: 0 4px 4px var(--color-button-shadow);
+}
+
+.welcome-cta:focus-visible {
+  outline: 3px solid rgba(13, 94, 213, 0.4);
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .welcome-scene {
+    width: 100%;
+    height: 100dvh;
+  }
+
+  .welcome-decoration {
+    left: calc(var(--mobile-x) * var(--scene-scale-x) * 1px);
+    top: calc(var(--mobile-y) * var(--scene-scale-y) * 1px);
+    width: calc(var(--mobile-w) * var(--scene-scale-uniform) * 1px);
+    height: calc(var(--mobile-h) * var(--scene-scale-uniform) * 1px);
+    transform: scale(var(--monster-scale-mobile));
+  }
+
+  .welcome-title {
+    left: calc((var(--mobile-x) / var(--mobile-canvas-w)) * 100%);
+    top: calc((var(--mobile-y) / var(--mobile-canvas-h)) * 100%);
+    width: calc((var(--mobile-w) / var(--mobile-canvas-w)) * 100%);
+    min-height: calc((var(--mobile-h) / var(--mobile-canvas-h)) * 100%);
+    font-size: 40px;
+    line-height: 1.15;
+  }
+
+  .welcome-cta {
+    left: calc((var(--mobile-x) / var(--mobile-canvas-w)) * 100%);
+    top: calc((var(--mobile-y) / var(--mobile-canvas-h)) * 100%);
+    width: calc((var(--mobile-w) / var(--mobile-canvas-w)) * 100%);
+    min-height: calc((var(--mobile-h) / var(--mobile-canvas-h)) * 100%);
+    border-radius: 30px;
+    font-size: 48px;
+  }
+}

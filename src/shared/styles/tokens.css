@@ -1,0 +1,8 @@
+:root {
+  --color-page: #f7f8fc;
+  --color-primary: #5b6cff;
+  --color-button: #0d5ed5;
+  --color-button-bg: #ffffff;
+  --color-button-shadow: rgba(0, 0, 0, 0.25);
+  --font-main: "Inter", "Segoe UI", sans-serif;
+}
