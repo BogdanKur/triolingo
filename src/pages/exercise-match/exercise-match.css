@@ -1,0 +1,213 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.exercise-match-screen {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #ebeced;
+}
+
+.exercise-match-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.exercise-match-close {
+  position: absolute;
+  z-index: 3;
+  top: clamp(18px, 4.6vw, 31px);
+  right: clamp(18px, 4.8vw, 31px);
+  width: clamp(30px, 3.6vw, 42px);
+  height: clamp(30px, 3.6vw, 42px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.exercise-match-close img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.exercise-match-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: clamp(24px, 4.8vh, 37px) clamp(16px, 4.5vw, 60px) clamp(24px, 4vh, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 3vh, 24px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.exercise-match-main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.exercise-match-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(30px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.exercise-match-board {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+}
+
+.exercise-match-column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vh, 22px);
+  width: 100%;
+}
+
+.exercise-match-column:first-of-type {
+  align-items: flex-start;
+}
+
+.exercise-match-column:last-of-type {
+  align-items: flex-end;
+}
+
+.exercise-match-word {
+  width: clamp(170px, 22vw, 280px);
+  min-height: clamp(56px, 9.8vh, 70px);
+  border: 2px solid #0d5ed5;
+  border-radius: 20px;
+  background: #ececec;
+  color: #000000;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0 clamp(10px, 1.2vw, 14px);
+}
+
+.exercise-match-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.exercise-match-line {
+  position: absolute;
+  height: 3px;
+  transform-origin: left center;
+  border-radius: 999px;
+}
+
+.exercise-match-line.exercise-match-line--pending {
+  background: #2d67ff;
+}
+
+.exercise-match-line.exercise-match-line--correct {
+  background: #1fa353;
+}
+
+.exercise-match-line.exercise-match-line--wrong {
+  background: #f93939;
+}
+
+.exercise-match-line.exercise-match-line--active {
+  background: #0d5ed5;
+  opacity: 0.9;
+}
+
+.exercise-match-error {
+  margin: 0;
+  color: #f93939;
+  font-size: clamp(24px, 2.6vw, 40px);
+  line-height: 1.1;
+  font-weight: 400;
+  text-align: center;
+}
+
+.exercise-match-check {
+  width: min(100%, var(--button-max-width));
+  min-height: clamp(72px, 12vh, 87px);
+  border: 2px solid #0d5ed5;
+  border-radius: 35px;
+  background: transparent;
+  color: #0d5ed5;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.exercise-match-check.exercise-match-check--ready:hover {
+  background: #0d5ed5;
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .exercise-match-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .exercise-match-main {
+    padding: 20px 12px 18px;
+    gap: 14px;
+  }
+
+  .exercise-match-title {
+    margin-top: 6px;
+    font-size: clamp(26px, 9vw, 38px);
+  }
+
+  .exercise-match-board {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .exercise-match-lines {
+    display: none;
+  }
+
+  .exercise-match-word {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .exercise-match-error {
+    font-size: clamp(22px, 6.2vw, 30px);
+  }
+
+  .exercise-match-check {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
