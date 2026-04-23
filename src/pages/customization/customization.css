@@ -1,0 +1,614 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.customization-screen {
+  --header-h: clamp(72px, 11dvh, 107px);
+  --main-pad-x: clamp(18px, 5vw, 60px);
+  --main-inner-pad-x: clamp(14px, 1.8vw, 22px);
+  --main-pad-top: clamp(12px, 2.1vh, 20px);
+  --main-pad-bottom: clamp(16px, 2.4vh, 30px);
+  --right-align-x: calc(var(--main-pad-x) + var(--main-inner-pad-x));
+  --popup-accent: #e4538c;
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #ebeced;
+}
+
+.customization-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.custom-header {
+  position: relative;
+  z-index: 3;
+  height: var(--header-h);
+  background: #ffffff;
+}
+
+.purchase-success {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-h);
+  z-index: 40;
+  background: #0d5ed5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.customization-screen.is-success-visible .purchase-success {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.customization-screen.is-success-fading .purchase-success {
+  opacity: 0;
+}
+
+.purchase-success-text {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.purchase-success-close {
+  position: absolute;
+  right: clamp(12px, 2.5vw, 31px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(24px, 3.5vw, 42px);
+  height: clamp(24px, 3.5vw, 42px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: clamp(30px, 4.4vw, 52px);
+  line-height: 0.8;
+  cursor: pointer;
+}
+
+.custom-header-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--right-align-x) 0 clamp(14px, 5vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 23px);
+  min-width: 0;
+}
+
+.custom-brand-mascot {
+  width: clamp(38px, 5.8vw, 72px);
+  height: clamp(38px, 5.8vw, 72px);
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.custom-brand-text {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.custom-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.custom-burger {
+  width: clamp(36px, 4.6vw, 55px);
+  height: clamp(26px, 3.4vw, 40px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.custom-burger img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.custom-main {
+  position: relative;
+  z-index: 2;
+  height: calc(100dvh - var(--header-h));
+  padding: 0 var(--main-pad-x);
+}
+
+.custom-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--main-pad-top) var(--main-inner-pad-x) var(--main-pad-bottom);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.custom-section + .custom-section {
+  margin-top: clamp(26px, 4vh, 36px);
+  padding-top: clamp(8px, 1.2vh, 14px);
+}
+
+.custom-section-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.custom-grid {
+  margin-top: clamp(14px, 2.2vh, 24px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 26px) clamp(18px, 2.4vw, 32px);
+}
+
+.custom-card {
+  position: relative;
+  border: 0;
+  background: #ffffff;
+  border-radius: clamp(24px, 3vw, 45px);
+  border: 2px solid #0d5ed5;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.custom-card.custom-card--owned {
+  opacity: 0.48;
+  filter: saturate(0.65);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.custom-card.custom-card--owned::after {
+  content: "Куплено";
+  position: absolute;
+  top: clamp(10px, 1.6vh, 16px);
+  right: clamp(12px, 1.4vw, 18px);
+  background: rgba(13, 94, 213, 0.9);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: clamp(12px, 1.4vw, 16px);
+  line-height: 1;
+}
+
+.custom-card--pet {
+  aspect-ratio: 290 / 300;
+}
+
+.custom-card--crystal {
+  aspect-ratio: 290 / 322;
+}
+
+.custom-card-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 1.7vw, 20px) clamp(14px, 1.9vw, 26px) 0;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.custom-card--pet .custom-card-image-wrap {
+  padding-top: clamp(16px, 2.2vw, 26px);
+}
+
+.custom-card-image {
+  width: 100%;
+  max-width: clamp(168px, 17vw, 224px);
+  max-height: clamp(156px, 19vw, 228px);
+  object-fit: contain;
+  display: block;
+}
+
+.custom-card--crystal .custom-card-image {
+  max-width: clamp(112px, 11.2vw, 140px);
+  max-height: clamp(112px, 11.2vw, 140px);
+}
+
+.custom-card-price-wrap {
+  padding: 0 clamp(14px, 1.9vw, 26px) clamp(10px, 1.3vw, 16px);
+}
+
+.custom-card-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.custom-card-price {
+  color: #0d5ed5;
+  font-size: clamp(26px, 2.8vw, 32px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.custom-card-crystal {
+  width: clamp(20px, 2.5vw, 30px);
+  height: clamp(20px, 2.5vw, 30px);
+  object-fit: contain;
+}
+
+.custom-card-currency {
+  color: #0d5ed5;
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.custom-card-cash {
+  margin: clamp(6px, 0.8vw, 10px) 0 0;
+  color: #000000;
+  text-align: center;
+  font-size: clamp(26px, 2.8vw, 32px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.drawer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(429px, 86vw);
+  height: 100%;
+  background: #ebeced;
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+}
+
+.customization-screen.is-drawer-open .drawer {
+  transform: translateX(0);
+}
+
+.drawer-head {
+  height: clamp(56px, 9dvh, 64px);
+  background: #ffffff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.drawer-head-icon {
+  width: clamp(34px, 5vw, 44px);
+  height: clamp(34px, 5vw, 44px);
+  object-fit: contain;
+}
+
+.drawer-head-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(24px, 5.8vw, 36px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.drawer-list {
+  list-style: none;
+  margin: clamp(22px, 5dvh, 88px) 0 0;
+  padding: 0 51px;
+}
+
+.drawer-row {
+  position: relative;
+  padding: 0 0 clamp(20px, 3vh, 34px);
+  margin: 0 0 clamp(20px, 3vh, 34px);
+}
+
+.drawer-link {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #000000;
+  text-align: left;
+  font-size: clamp(28px, 6.6vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.drawer-link:hover {
+  color: #0d5ed5;
+}
+
+.drawer-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  object-fit: fill;
+}
+
+.purchase-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.purchase-popup {
+  position: absolute;
+  z-index: 31;
+  top: 50%;
+  left: 50%;
+  width: min(960px, calc(100vw - 24px));
+  aspect-ratio: 960 / 570;
+  transform: translate(-50%, -50%) scale(0.97);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.customization-screen.is-popup-open .purchase-popup {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.purchase-popup-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(28px, 4vw, 46px);
+  border: clamp(2px, 0.28vw, 3px) solid var(--popup-accent);
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(10px, 1.2vh, 18px) clamp(18px, 2.2vw, 30px) clamp(18px, 2.1vh, 26px);
+}
+
+.purchase-popup-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.75;
+  z-index: 0;
+}
+
+.purchase-item-image,
+.purchase-price-row,
+.purchase-cash-price,
+.purchase-actions {
+  position: relative;
+  z-index: 1;
+}
+
+.purchase-item-image {
+  width: clamp(250px, 38vw, 430px);
+  max-height: clamp(230px, 58%, 410px);
+  object-fit: contain;
+  margin-top: clamp(0px, 0.3vh, 4px);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.purchase-popup[data-popup-id="popup-crystal"] .purchase-item-image {
+  width: clamp(182px, 26vw, 290px);
+  max-height: clamp(162px, 39%, 248px);
+}
+
+.purchase-price-row {
+  margin-top: clamp(12px, 2vh, 18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.6vw, 24px);
+  color: var(--popup-accent);
+}
+
+.purchase-crystal-price {
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.purchase-crystal-icon {
+  width: clamp(34px, 5vw, 53px);
+  height: clamp(34px, 5vw, 53px);
+  object-fit: contain;
+}
+
+.purchase-cash-price {
+  margin: clamp(4px, 0.4vh, 8px) 0 0;
+  color: var(--popup-accent);
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.purchase-actions {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  --purchase-chain-gap: clamp(26px, 4.6vw, 56px);
+  padding-inline: var(--purchase-chain-gap);
+  gap: var(--purchase-chain-gap);
+  transform: translateY(clamp(-52px, -7.6vh, -76px));
+}
+
+.purchase-btn {
+  height: clamp(92px, 21%, 126px);
+  border-radius: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--popup-accent);
+  font-size: clamp(20px, 2.5vw, 40px);
+  line-height: 1;
+  font-weight: 400;
+  cursor: pointer;
+  flex: 1 1 0;
+}
+
+.purchase-btn--cancel {
+  background: #ffffff;
+  color: var(--popup-accent);
+}
+
+.purchase-btn--buy {
+  background: var(--popup-accent);
+  color: #ffffff;
+}
+
+@media (max-width: 1023px) {
+  .custom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .customization-screen {
+    --main-pad-top: clamp(10px, 1.6vh, 14px);
+    --main-pad-bottom: clamp(12px, 1.8vh, 18px);
+  }
+
+  .custom-header-inner {
+    padding: 0 clamp(12px, 3.8vw, 20px);
+  }
+
+  .custom-title {
+    font-size: clamp(22px, 6.8vw, 34px);
+  }
+
+  .custom-brand-text {
+    font-size: clamp(22px, 6.6vw, 34px);
+  }
+
+  .custom-main {
+    padding: 0 clamp(12px, 3.8vw, 20px);
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-scroll {
+    padding: 0;
+  }
+
+  .custom-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .custom-card {
+    max-width: 370px;
+    margin: 0 auto;
+  }
+
+  .custom-section-title {
+    font-size: clamp(24px, 7.5vw, 32px);
+  }
+
+  .drawer-list {
+    padding: 0 28px;
+  }
+
+  .drawer-link {
+    font-size: clamp(22px, 6.8vw, 32px);
+  }
+
+  .purchase-popup {
+    width: calc(100vw - 16px);
+  }
+
+  .purchase-popup-inner {
+    padding: 10px 12px 12px;
+  }
+
+  .purchase-item-image {
+    width: clamp(200px, 64vw, 340px);
+    max-height: 62%;
+  }
+
+  .purchase-popup[data-popup-id="popup-crystal"] .purchase-item-image {
+    width: clamp(150px, 41vw, 236px);
+    max-height: clamp(128px, 31%, 196px);
+  }
+
+  .purchase-actions {
+    --purchase-chain-gap: clamp(10px, 4vw, 18px);
+    padding-inline: var(--purchase-chain-gap);
+    gap: var(--purchase-chain-gap);
+    transform: translateY(clamp(-36px, -5.4vh, -48px));
+  }
+
+  .purchase-btn {
+    height: clamp(74px, 15vh, 104px);
+  }
+}
