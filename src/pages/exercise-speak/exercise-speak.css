@@ -1,0 +1,184 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.exercise-speak-screen {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #ebeced;
+}
+
+.exercise-speak-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.exercise-speak-close {
+  position: absolute;
+  z-index: 3;
+  top: clamp(18px, 4.6vw, 31px);
+  right: clamp(18px, 4.8vw, 31px);
+  width: clamp(30px, 3.6vw, 42px);
+  height: clamp(30px, 3.6vw, 42px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.exercise-speak-close img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.exercise-speak-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: clamp(24px, 4.8vh, 37px) clamp(16px, 4.5vw, 60px) clamp(24px, 4vh, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3.8vh, 34px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.exercise-speak-main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.exercise-speak-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(30px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.exercise-speak-phrase-card {
+  width: min(100%, var(--card-max-width));
+  border-radius: clamp(22px, 2.5vw, 30px);
+  background: #f0f1fa;
+  box-shadow: 2px 4px 10.2px 9px rgba(0, 0, 0, 0.25);
+  min-height: clamp(70px, 14vh, 79px);
+  padding: clamp(14px, 1.8vh, 18px) clamp(18px, 2.2vw, 26px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-speak-phrase {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(22px, 3.1vw, 50px);
+  line-height: 1.12;
+  font-weight: 400;
+  text-align: center;
+  word-break: break-word;
+}
+
+.exercise-speak-mic {
+  width: clamp(88px, 11vw, 120px);
+  height: clamp(88px, 11vw, 120px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.exercise-speak-mic-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform: scale(1);
+}
+
+.exercise-speak-mic.exercise-speak-mic--pressing .exercise-speak-mic-image {
+  animation: exercise-speak-mic-pulse 0.95s ease-in-out infinite;
+}
+
+.exercise-speak-check {
+  margin-top: auto;
+  width: min(100%, var(--button-max-width));
+  min-height: clamp(72px, 12vh, 87px);
+  border: 2px solid #0d5ed5;
+  border-radius: 35px;
+  background: transparent;
+  color: #0d5ed5;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.exercise-speak-check:hover {
+  background: #0d5ed5;
+  color: #ffffff;
+}
+
+@keyframes exercise-speak-mic-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .exercise-speak-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .exercise-speak-main {
+    padding: 20px 12px 18px;
+    gap: 16px;
+  }
+
+  .exercise-speak-title {
+    margin-top: 6px;
+    font-size: clamp(26px, 9vw, 38px);
+  }
+
+  .exercise-speak-phrase {
+    font-size: clamp(18px, 5.8vw, 28px);
+  }
+
+  .exercise-speak-check {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
